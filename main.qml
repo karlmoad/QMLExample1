@@ -40,9 +40,9 @@ Window {
            Canvas {
                id: canvas
                anchors.fill: parent
-               property int spacer: 30
+               property int spacer: 10
                property int swooshHeight: 150
-               property int swooshBodyHeight: 80
+               property int swooshBodyHeight: 20
                property int swooshLegHeight: 80
                property int swooshLegWidth: 200
                property int pX: 0
@@ -82,21 +82,26 @@ Window {
                    pX += swooshLegWidth
                    context.lineTo(pX,pY)
 
-                   pY -= swooshLegHeight
+                   pY -= (swooshLegHeight/2)
                    context.lineTo(pX,pY)
 
                    //inner curve
                    cp1X = pX
-                   cp1Y = pY
-                   cp2X = pX
+                   cp1Y = spacer + swooshBodyHeight
+
+                   pX += spacer*2
+                   pY = spacer + swooshBodyHeight
+                   cp2X = pX - spacer
                    cp2Y = pY
 
 
+                   context.bezierCurveTo(cp1X, cp1Y, cp2X, cp2Y, pX, pY)
 
-
-
-
-
+                   //Draw bottom and right side
+                   pX = canvas.width - spacer
+                   context.lineTo(pX, pY)
+                   context.closePath()
+                   context.fill()
                }
            }
        }
