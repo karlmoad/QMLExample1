@@ -37,10 +37,51 @@ Window {
 
            }
 
-           Text {
-               text: qsTr("MCP ONLINE")
-               anchors.centerIn: parent
-               color: "#FFFFFF"
+           Canvas {
+               id: canvas
+               anchors.fill: parent
+               property int spacer: 30
+               property int swooshHeight: 200
+               property int swooshBodyHeight: 80
+               property int swooshLegHeight: 120
+               property int swooshLegWidth: 200
+               property int pX: 0
+               property int pY: 0
+               onPaint:{
+                   var context = canvas.getContext("2d")
+                   context.lineWidth = 5
+                   context.strokeStyle = "#9999FF"
+                   context.fillStyle = "#9999FF"
+
+                   context.beginPath()
+
+                   //start point
+                   pX = canvas.width - spacer
+                   pY = spacer
+                   context.moveTo(pX,pY)
+
+                   //Draw top line
+                   pX = spacer + swooshLegWidth
+                   context.lineTo(pX,pY)
+
+
+                   //Draw top curve
+                   var cp1X = pX - (swooshLegWidth/2)
+                   var cp1Y = pY
+                   var cp2X = pX - (swooshLegWidth)
+                   var cp2Y = pY - 5
+
+                   pX = spacer
+                   pY += swooshHeight - swooshLegHeight
+
+                   context.bezierCurveTo(cp1X, cp1Y, cp2X, cp2Y, pX, pY)
+                   context.stroke()
+
+
+
+
+
+               }
            }
        }
 }
