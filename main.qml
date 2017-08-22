@@ -41,9 +41,9 @@ Window {
                id: canvas
                anchors.fill: parent
                property int spacer: 30
-               property int swooshHeight: 200
+               property int swooshHeight: 150
                property int swooshBodyHeight: 80
-               property int swooshLegHeight: 120
+               property int swooshLegHeight: 80
                property int swooshLegWidth: 200
                property int pX: 0
                property int pY: 0
@@ -70,12 +70,28 @@ Window {
                    var cp1Y = pY
                    var cp2X = pX - (swooshLegWidth)
                    var cp2Y = pY - 5
-
                    pX = spacer
                    pY += swooshHeight - swooshLegHeight
-
                    context.bezierCurveTo(cp1X, cp1Y, cp2X, cp2Y, pX, pY)
-                   context.stroke()
+
+
+                   //Draw leg sides and bottom
+                   pY += swooshLegHeight
+                   context.lineTo(pX, pY)
+
+                   pX += swooshLegWidth
+                   context.lineTo(pX,pY)
+
+                   pY -= swooshLegHeight
+                   context.lineTo(pX,pY)
+
+                   //inner curve
+                   cp1X = pX
+                   cp1Y = pY
+                   cp2X = pX
+                   cp2Y = pY
+
+
 
 
 
