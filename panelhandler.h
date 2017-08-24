@@ -12,7 +12,7 @@ public:
     explicit PanelHandler(QObject *parent = nullptr);
     Q_INVOKABLE void runCommand(QString name);
 signals:
-
+    void signalCommandRun(QString name);
 public slots:
 };
 

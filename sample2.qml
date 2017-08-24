@@ -1,5 +1,6 @@
 import QtQuick 2.7
 import QtQuick.Window 2.3
+import io.koad.panelhandler 1.0
 
 Window {
        id: root
@@ -12,6 +13,13 @@ Window {
 
        onWindowStateChanged:  {
             console.log(windowState)
+       }
+
+       PanelHandler {
+           id: panelHandler
+           onSignalCommandRun: {
+                console.log("from PanelHandler " + name)
+           }
        }
 
        Rectangle {
@@ -30,7 +38,7 @@ Window {
                }
 
                if((event.key === Qt.Key_G) && (event.modifiers & Qt.ShiftModifier)){
-                   PanelHanlder.runCommand(qsTr("MINIMIZE"))
+                   panelHandler.runCommand(qsTr("MINIMIZE"))
                    root.showMinimized()
                }
 

@@ -8,12 +8,16 @@ int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);
 
-    QScopedPointer<PanelHandler> panelHandler(new PanelHandler);
+    //Method 1
+    //QScopedPointer<PanelHandler> panelHandler(new PanelHandler);
+
+    qmlRegisterType<PanelHandler>("io.koad.panelhandler",1,0,"PanelHandler");
 
     QQmlApplicationEngine engine;
     engine.load(QUrl(QStringLiteral("qrc:/sample2.qml")));
 
-    engine.rootContext()->setContextProperty("PanelHanlder",panelHandler.data());
+    //Method 1
+    //engine.rootContext()->setContextProperty("PanelHanlder",panelHandler.data());
 
     if (engine.rootObjects().isEmpty())
         return -1;
