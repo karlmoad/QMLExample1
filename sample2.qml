@@ -30,7 +30,7 @@ Window {
                }
 
                if((event.key === Qt.Key_G) && (event.modifiers & Qt.ShiftModifier)){
-                   console.log(qsTr("Hit"))
+                   PanelHanlder.runCommand(qsTr("MINIMIZE"))
                    root.showMinimized()
                }
 
