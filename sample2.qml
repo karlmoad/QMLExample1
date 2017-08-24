@@ -14,7 +14,6 @@ Window {
             console.log(windowState)
        }
 
-
        Rectangle {
            id: main
            color: "#000000"
@@ -44,7 +43,7 @@ Window {
                property int gap: 5
                property int sectionWidth: canvas.width - (margin*2)
                property int swoopBaseHeight: 40
-               property int swoopBaseWidth: 100
+               property int swoopBaseWidth: 200
                property double swoopBodyHeight: (swoopBaseHeight -gap)/2
                property int cx: 0
                property int cy: 0
